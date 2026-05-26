@@ -1,92 +1,489 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G2G Productions</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+/* =============================================
+   G2G PRODUCTIONS — style.css
+   Cinematic Black & Gold Theme
+   ============================================= */
 
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600&display=swap');
 
-    <!-- NAVIGATION -->
-    <header class="navbar">
-        <div class="logo">G2G PRODUCTIONS</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+/* === ROOT VARIABLES === */
+:root {
+  --gold: #F5C518;
+  --gold-light: #ffd84d;
+  --gold-dim: rgba(245, 197, 24, 0.15);
+  --black: #000000;
+  --black-deep: #050505;
+  --black-card: #0d0d0d;
+  --black-card2: #111111;
+  --white: #ffffff;
+  --gray: #aaaaaa;
+  --gray-dim: #555555;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Raleway', sans-serif;
+  --transition: 0.3s ease;
+  --glow: 0 0 18px rgba(245, 197, 24, 0.35);
+  --glow-strong: 0 0 30px rgba(245, 197, 24, 0.55);
+}
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <img src="logo.png" alt="G2G Productions Logo" class="hero-logo">
+/* === RESET & BASE === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        <h1>Websites. Apps. Production. Built for Growth.</h1>
-        <p>Premium digital solutions for businesses ready to scale.</p>
+html {
+  scroll-behavior: smooth;
+}
 
-        <div class="hero-buttons">
-            <a href="services.html" class="btn gold-btn">View Services</a>
-            <a href="contact.html" class="btn outline-btn">Get a Quote</a>
-        </div>
-    </section>
+body {
+  background-color: var(--black-deep);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-    <!-- SERVICES PREVIEW -->
-    <section class="services-preview">
-        <h2>What We Do</h2>
+/* Subtle gold grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
 
-        <div class="service-grid">
-            <div class="service-card">
-                <h3>Website Development</h3>
-                <p>Custom, modern, mobile‑optimized websites built for performance and branding.</p>
-            </div>
+/* === NAVBAR === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(245, 197, 24, 0.2);
+}
 
-            <div class="service-card">
-                <h3>App Development</h3>
-                <p>iOS, Android, and web apps with login systems, subscriptions, AI, and more.</p>
-            </div>
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-shadow: var(--glow);
+}
 
-            <div class="service-card">
-                <h3>Maintenance & Management</h3>
-                <p>Monthly support, updates, hosting, analytics, and full digital management.</p>
-            </div>
-        </div>
-    </section>
+nav {
+  display: flex;
+  gap: 36px;
+}
 
-    <!-- PRICING PREVIEW -->
-    <section class="pricing-preview">
-        <h2>Pricing Overview</h2>
+nav a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition);
+}
 
-        <div class="pricing-grid">
-            <div class="price-box">
-                <h3>Websites</h3>
-                <p><strong>$500–$1,500</strong> Basic</p>
-                <p><strong>$1,500–$4,000</strong> Business</p>
-                <p><strong>$5,000+</strong> Advanced</p>
-            </div>
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
 
-            <div class="price-box">
-                <h3>Apps</h3>
-                <p><strong>$3,000–$10,000</strong> Basic</p>
-                <p><strong>$10,000–$40,000</strong> Mid‑Level</p>
-                <p><strong>$50,000+</strong> Enterprise</p>
-            </div>
+nav a:hover {
+  color: var(--gold);
+}
 
-            <div class="price-box">
-                <h3>Starter Packages</h3>
-                <p><strong>$750 + $75/mo</strong> Starter Website</p>
-                <p><strong>$1,500–$2,500 + $125–$250/mo</strong> Business Website</p>
-                <p><strong>$5,000–$8,000</strong> Simple App</p>
-            </div>
-        </div>
-    </section>
+nav a:hover::after {
+  width: 100%;
+}
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 G2G Productions. All Rights Reserved.</p>
-    </footer>
+/* Hamburger (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
 
-</body>
-</html>
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* === HERO === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(245, 197, 24, 0.07) 0%, transparent 70%),
+              var(--black-deep);
+  z-index: 1;
+}
+
+.hero-logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 197, 24, 0.4);
+  box-shadow: var(--glow-strong), 0 0 60px rgba(245, 197, 24, 0.1);
+  margin-bottom: 36px;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--glow-strong), 0 0 60px rgba(245, 197, 24, 0.1); }
+  50%       { box-shadow: 0 0 40px rgba(245, 197, 24, 0.7), 0 0 80px rgba(245, 197, 24, 0.2); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  text-shadow: var(--glow);
+  max-width: 800px;
+  margin-bottom: 18px;
+  line-height: 1.3;
+  animation: fadeUp 0.9s ease both;
+}
+
+.hero p {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  margin-bottom: 44px;
+  animation: fadeUp 0.9s ease 0.15s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+
+/* === BUTTONS === */
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 34px;
+  border-radius: 2px;
+  transition: all var(--transition);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.gold-btn {
+  background: var(--gold);
+  color: var(--black);
+  border: 2px solid var(--gold);
+}
+
+.gold-btn:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  box-shadow: var(--glow-strong);
+  transform: translateY(-2px);
+}
+
+.outline-btn {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+
+.outline-btn:hover {
+  background: var(--gold-dim);
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+}
+
+/* === SECTION BASE === */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 90px 48px;
+  text-align: center;
+}
+
+section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 60px;
+  text-shadow: var(--glow);
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  box-shadow: var(--glow);
+}
+
+/* === SERVICES === */
+.services-preview {
+  background: var(--black-deep);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--black-card);
+  border: 1px solid rgba(245, 197, 24, 0.15);
+  border-radius: 4px;
+  padding: 40px 32px;
+  text-align: left;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.service-card:hover {
+  border-color: rgba(245, 197, 24, 0.5);
+  transform: translateY(-6px);
+  box-shadow: var(--glow), 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* === PRICING === */
+.pricing-preview {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245, 197, 24, 0.05) 0%, transparent 70%),
+              var(--black);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.price-box {
+  background: var(--black-card2);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: 4px;
+  padding: 40px 32px;
+  text-align: left;
+  transition: all var(--transition);
+}
+
+.price-box:hover {
+  border-color: var(--gold);
+  box-shadow: var(--glow);
+  transform: translateY(-4px);
+}
+
+.price-box h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(245, 197, 24, 0.2);
+}
+
+.price-box p {
+  font-size: 0.88rem;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.price-box p strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* === FOOTER === */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 30px 24px;
+  border-top: 1px solid rgba(245, 197, 24, 0.15);
+  background: var(--black);
+}
+
+footer p {
+  font-size: 0.78rem;
+  color: var(--gray-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 24px;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.97);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.2);
+    padding: 16px 0;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    padding: 14px 28px;
+    font-size: 0.9rem;
+  }
+
+  nav a::after {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  section {
+    padding: 70px 24px;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 220px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1rem;
+  }
+
+  .service-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
