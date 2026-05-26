@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — G2G Productions</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            padding: 160px 48px 80px;
+            text-align: center;
+            background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(245,197,24,0.07) 0%, transparent 70%);
+        }
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-shadow: var(--glow);
+            margin-bottom: 16px;
+        }
+        .page-hero p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-section {
+            padding: 80px 48px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* LEFT COLUMN */
+        .contact-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+            text-shadow: var(--glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(245,197,24,0.3);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(245,197,24,0.05);
+        }
+
+        .contact-item-text label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245,197,24,0.6);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-text a,
+        .contact-item-text span {
+            font-size: 0.95rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--gold);
+        }
+
+        .placeholder-note {
+            display: inline-block;
+            background: rgba(245,197,24,0.08);
+            border: 1px dashed rgba(245,197,24,0.3);
+            border-radius: 3px;
+            color: rgba(245,197,24,0.6);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            margin-top: 4px;
+        }
+
+        /* SOCIAL LINKS */
+        .social-heading {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245,197,24,0.6);
+            margin: 40px 0 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--white);
+            text-decoration: none;
+            border: 1px solid rgba(245,197,24,0.2);
+            border-radius: 2px;
+            padding: 9px 16px;
+            transition: all 0.3s ease;
+            background: rgba(245,197,24,0.03);
+        }
+
+        .social-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
+        }
+
+        /* FORM */
+        .contact-form-wrap h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+            text-shadow: var(--glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-form-wrap h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(245,197,24,0.7);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: var(--black-card);
+            border: 1px solid rgba(245,197,24,0.2);
+            border-radius: 2px;
+            padding: 13px 16px;
+            color: var(--white);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-dim);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: rgba(245,197,24,0.6);
+            box-shadow: 0 0 12px rgba(245,197,24,0.1);
+        }
+
+        .form-group select option {
+            background: #111;
+            color: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            margin-top: 10px;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            font-size: 0.85rem;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(245,197,24,0.3);
+            border-radius: 4px;
+            background: rgba(245,197,24,0.05);
+        }
+
+        .form-success h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .form-success p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: var(--black);
+            padding: 90px 48px;
+            text-align: center;
+        }
+
+        .faq-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 60px;
+            text-shadow: var(--glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .faq-list {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            border: 1px solid rgba(245,197,24,0.12);
+            border-radius: 2px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--black-card);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            color: var(--white);
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover { color: var(--gold); }
+
+        .faq-arrow {
+            color: var(--gold);
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-answer p {
+            padding: 0 24px 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .faq-item.open .faq-answer { max-height: 300px; }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                padding: 60px 24px;
+            }
+            .form-row { grid-template-columns: 1fr; }
+            .page-hero { padding: 140px 24px 60px; }
+            .faq-section { padding-left: 24px; padding-right: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">G2G PRODUCTIONS</div>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <h1>Get in Touch</h1>
+        <p>Have a project in mind? Let's talk. We'll get back to you within 24 hours.</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <div class="contact-section">
+
+        <!-- LEFT: INFO -->
+        <div class="contact-info reveal">
+            <h2>Contact Info</h2>
+
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-item-text">
+                    <label>Email</label>
+                    <a href="mailto:your@email.com">your@email.com</a>
+                    <div class="placeholder-note">★ Replace with your email</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-item-text">
+                    <label>Phone</label>
+                    <a href="tel:+10000000000">(000) 000-0000</a>
+                    <div class="placeholder-note">★ Replace with your number</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-item-text">
+                    <label>Location</label>
+                    <span>United States — Remote & On-Site</span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">🕐</div>
+                <div class="contact-item-text">
+                    <label>Response Time</label>
+                    <span>Within 24 hours</span>
+                </div>
+            </div>
+
+            <p class="social-heading">Follow Us</p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <span>f</span> Facebook
+                    <div class="placeholder-note" style="margin:0; font-size:0.65rem;">★ Add URL</div>
+                </a>
+                <a href="#" class="social-link">
+                    <span>ig</span> Instagram
+                    <div class="placeholder-note" style="margin:0; font-size:0.65rem;">★ Add URL</div>
+                </a>
+                <a href="#" class="social-link">
+                    <span>in</span> LinkedIn
+                    <div class="placeholder-note" style="margin:0; font-size:0.65rem;">★ Add URL</div>
+                </a>
+                <a href="#" class="social-link">
+                    <span>𝕏</span> Twitter/X
+                    <div class="placeholder-note" style="margin:0; font-size:0.65rem;">★ Add URL</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="contact-form-wrap reveal">
+            <h2>Send a Message</h2>
+
+            <div id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="firstName" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" placeholder="Smith">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone (Optional)</label>
+                    <input type="tel" id="phone" placeholder="(555) 000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label>Service Interested In</label>
+                    <select id="service">
+                        <option value="">— Select a Service —</option>
+                        <option value="website">Website Development</option>
+                        <option value="app">App Development</option>
+                        <option value="maintenance">Maintenance & Management</option>
+                        <option value="starter">Starter Package</option>
+                        <option value="other">Other / Not Sure Yet</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Message</label>
+                    <textarea id="message" placeholder="Tell us about your project — what you need, your timeline, and any other details..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button class="btn gold-btn" onclick="submitForm()">Send Message</button>
+                </div>
+            </div>
+
+            <div class="form-success" id="formSuccess">
+                <h3>Message Sent! ✓</h3>
+                <p>Thanks for reaching out. We'll be in touch within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2>Common Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How long does a website take to build?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>A basic website typically takes 1–2 weeks. A full business site with custom features takes 3–5 weeks. We'll give you a clear timeline before we start.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you require a deposit upfront?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes — we typically require 50% upfront to begin work, with the remaining 50% due upon completion and approval. This protects both parties.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can you work with businesses outside the US?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely. We work remotely with clients worldwide. As long as we can communicate clearly, location is no barrier.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What if I don't know exactly what I need?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>That's completely fine — most clients don't. Send us a message with a general idea of your goals and we'll help you figure out the best path forward. No pressure, no obligation.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you offer ongoing support after launch?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes — our Maintenance & Management plans start at $75/mo and cover updates, hosting management, security, and priority support. We don't just build and disappear.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 G2G Productions. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function submitForm() {
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!firstName || !email || !message) {
+                alert('Please fill in your name, email, and message before sending.');
+                return;
+            }
+
+            // Show success message
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+
+            // NOTE: To actually send emails, connect a service like
+            // Formspree (formspree.io) or EmailJS — replace the href
+            // on the form with your Formspree endpoint.
+        }
+
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+    </script>
+</body>
+</html>

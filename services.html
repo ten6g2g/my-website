@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — G2G Productions</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PAGE HERO */
+        .page-hero {
+            padding: 160px 48px 80px;
+            text-align: center;
+            background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(245,197,24,0.07) 0%, transparent 70%);
+        }
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-shadow: var(--glow);
+            margin-bottom: 16px;
+        }
+        .page-hero p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* SERVICES FULL */
+        .services-full {
+            padding: 60px 48px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-block {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            border: 1px solid rgba(245,197,24,0.15);
+            border-radius: 4px;
+            padding: 48px;
+            margin-bottom: 32px;
+            background: var(--black-card);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-block:hover {
+            border-color: rgba(245,197,24,0.4);
+            box-shadow: var(--glow), 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(-4px);
+        }
+
+        .service-block:hover::before { opacity: 1; }
+
+        .service-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.7;
+        }
+
+        .service-block h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 0.06em;
+            line-height: 1.4;
+        }
+
+        .service-block .service-content p {
+            color: var(--gray);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .service-features li {
+            font-size: 0.88rem;
+            color: var(--white);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.5rem;
+            top: 10px;
+        }
+
+        .price-range {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            border: 1px solid rgba(245,197,24,0.3);
+            padding: 6px 16px;
+            border-radius: 2px;
+            background: rgba(245,197,24,0.05);
+        }
+
+        /* PACKAGES SECTION */
+        .packages-section {
+            background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245,197,24,0.05) 0%, transparent 70%), var(--black);
+            padding: 90px 48px;
+            text-align: center;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background: var(--black-card2);
+            border: 1px solid rgba(245,197,24,0.2);
+            border-radius: 4px;
+            padding: 44px 32px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .package-card.featured {
+            border-color: var(--gold);
+            box-shadow: var(--glow);
+        }
+
+        .package-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--glow-strong);
+            border-color: var(--gold);
+        }
+
+        .package-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+            background: var(--gold);
+            padding: 3px 10px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .package-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .package-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .package-price span {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .package-card ul {
+            list-style: none;
+            margin: 20px 0 28px;
+        }
+
+        .package-card ul li {
+            font-size: 0.88rem;
+            color: var(--gray);
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .package-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.75rem;
+        }
+
+        /* CTA */
+        .services-cta {
+            text-align: center;
+            padding: 90px 48px;
+            background: var(--black-deep);
+        }
+
+        .services-cta h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+            text-shadow: var(--glow);
+        }
+
+        .services-cta p {
+            color: var(--gray);
+            margin-bottom: 36px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-block {
+                grid-template-columns: 1fr;
+                padding: 32px 24px;
+            }
+            .services-full, .packages-section, .services-cta {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            .page-hero { padding: 140px 24px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="logo">G2G PRODUCTIONS</div>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <h1>Our Services</h1>
+        <p>Everything you need to build, launch, and grow your digital presence — under one roof.</p>
+    </section>
+
+    <!-- SERVICES DETAIL -->
+    <div class="services-full">
+
+        <div class="service-block reveal">
+            <div class="service-left">
+                <div class="service-label">01</div>
+                <h3>Website Development</h3>
+            </div>
+            <div class="service-content">
+                <p>We build custom, modern websites that are fast, mobile-optimized, and built to convert visitors into clients. Every site is designed to reflect your brand and built for performance.</p>
+                <ul class="service-features">
+                    <li>Custom design — no templates</li>
+                    <li>Mobile-first & fully responsive</li>
+                    <li>SEO-ready structure</li>
+                    <li>Contact forms & lead capture</li>
+                    <li>Fast load times & performance optimization</li>
+                    <li>Hosting setup & domain configuration</li>
+                </ul>
+                <span class="price-range">Starting at $500</span>
+            </div>
+        </div>
+
+        <div class="service-block reveal">
+            <div class="service-left">
+                <div class="service-label">02</div>
+                <h3>App Development</h3>
+            </div>
+            <div class="service-content">
+                <p>From simple utility apps to full-scale platforms with AI, subscriptions, and real-time features — we build iOS, Android, and web apps that are ready for the market.</p>
+                <ul class="service-features">
+                    <li>iOS & Android (React Native)</li>
+                    <li>Login, registration & user accounts</li>
+                    <li>Stripe payments & subscriptions</li>
+                    <li>Real-time features & GPS</li>
+                    <li>AI integrations</li>
+                    <li>App Store & Google Play submission</li>
+                </ul>
+                <span class="price-range">Starting at $3,000</span>
+            </div>
+        </div>
+
+        <div class="service-block reveal">
+            <div class="service-left">
+                <div class="service-label">03</div>
+                <h3>Maintenance &amp; Management</h3>
+            </div>
+            <div class="service-content">
+                <p>We don't just build and walk away. Our monthly management plans keep your site or app running smoothly, up to date, and performing at its best — so you can focus on your business.</p>
+                <ul class="service-features">
+                    <li>Monthly updates & security patches</li>
+                    <li>Hosting management</li>
+                    <li>Analytics & performance reporting</li>
+                    <li>Content updates</li>
+                    <li>Priority support</li>
+                    <li>Backup & recovery</li>
+                </ul>
+                <span class="price-range">Starting at $75/mo</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- STARTER PACKAGES -->
+    <section class="packages-section">
+        <h2>Starter Packages</h2>
+        <div class="packages-grid">
+            <div class="package-card reveal">
+                <div class="package-tag">Website</div>
+                <h3>Starter Site</h3>
+                <div class="package-price">$750 <span>+ $75/mo</span></div>
+                <ul>
+                    <li>Up to 4 pages</li>
+                    <li>Mobile responsive</li>
+                    <li>Contact form</li>
+                    <li>Basic SEO setup</li>
+                    <li>Monthly maintenance included</li>
+                </ul>
+                <a href="contact.html" class="btn outline-btn">Get Started</a>
+            </div>
+            <div class="package-card featured reveal">
+                <div class="package-tag">Most Popular</div>
+                <h3>Business Site</h3>
+                <div class="package-price">$1,500–$2,500 <span>+ $125–$250/mo</span></div>
+                <ul>
+                    <li>Up to 10 pages</li>
+                    <li>Custom branding & design</li>
+                    <li>Blog or portfolio section</li>
+                    <li>Advanced SEO</li>
+                    <li>Analytics dashboard</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="contact.html" class="btn gold-btn">Get Started</a>
+            </div>
+            <div class="package-card reveal">
+                <div class="package-tag">App</div>
+                <h3>Simple App</h3>
+                <div class="package-price">$5,000–$8,000</div>
+                <ul>
+                    <li>iOS & Android</li>
+                    <li>Login & user accounts</li>
+                    <li>Core feature set</li>
+                    <li>Basic admin dashboard</li>
+                    <li>App store submission</li>
+                </ul>
+                <a href="contact.html" class="btn outline-btn">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="services-cta">
+        <h2>Ready to Build Something?</h2>
+        <p>Let's talk about your project. No pressure — just a conversation.</p>
+        <a href="contact.html" class="btn gold-btn">Get a Free Quote</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 G2G Productions. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
